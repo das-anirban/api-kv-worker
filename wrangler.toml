@@ -8,6 +8,10 @@ compatibility_flags = ["nodejs_compat"]
 binding = "CACHE"
 id = "99ab6878aa51423a8fd95a8d2890f643"
 
+[[kv_namespaces]]
+binding = "CACHED"
+id = "d5ca61992cfe4cb58dcea3f41aeecd9a"
+
 # Automatically place your workloads in an optimal location to minimize latency.
 # If you are running back-end logic in a Worker, running it closer to your back-end infrastructure
 # rather than the end user may result in better performance.

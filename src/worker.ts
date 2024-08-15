@@ -14,14 +14,14 @@
 import { Hono } from "hono"
 
 type Bindings = {
-	CACHE: KVNamespace
+	CACHED: KVNamespace
 }
 
 const app = new Hono<{ Bindings: Bindings }>();
 
 app.get("/:username", async c => {
 	const username = c.req.param("username")
-	const cachedResp = await c.env.CACHE.get(username, "json")
+	const cachedResp = await c.env.CACHED.get(username, "json")
 
 	if(cachedResp) {
 		return c.json(cachedResp)
@@ -33,7 +33,7 @@ app.get("/:username", async c => {
 		}
 	})
 	const data = await resp.json()
-	await c.env.CACHE.put(username, JSON.stringify(data))
+	await c.env.CACHED.put(username, JSON.stringify(data), {expiration: 60})
 	return c.json(data)
 })
 

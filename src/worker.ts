@@ -33,7 +33,8 @@ app.get("/:username", async c => {
 		}
 	})
 	const data = await resp.json()
-	await c.env.CACHED.put(username, JSON.stringify(data), {expiration: 60})
+	//const secondsFromNow = 60
+	await c.env.CACHED.put(username, JSON.stringify(data), { expirationTtl: 60 })
 	return c.json(data)
 })
 
